@@ -1,0 +1,2 @@
+>https://mandoc.bsd.lv/mdoc/exercises/prologue/write_simple.html#QUESTIONS
+The FreeBSD version because $Mdocdate$ is exclusive to OpenBSD's cvs(1).
