@@ -1,0 +1,2 @@
+>https://mandoc.bsd.lv/mdoc/exercises/prologue/write_arch.html#QUESTIONS
+When writing the same manual for NetBSD two things changes. Firstly we cannot use $Mdocdate$ so we have to specify the literal date explicitly. Secondly NetBSD uses different "architecture names" so we have to replace sgi with sgimips.
