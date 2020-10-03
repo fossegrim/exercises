@@ -10,6 +10,8 @@
 bool is_current_char_escaped();
 
 int main() {
+	bool in_single_line_comment = false; // //
+	bool in_multi_line_comment = false; // /**/
 	bool in_string = false; // ""
 	bool in_char = false; // ''
 	int levels_of_brace_nesting = 0; // {}
@@ -28,11 +30,23 @@ int main() {
 			if(c == '\'' && !is_current_char_escaped(prev_chars)) {
 				in_char = false;
 			}
+		} else if(in_single_line_comment) {
+			if(c == '\n') {
+				in_single_line_comment = false;
+			}
+		} else if(in_multi_line_comment) {
+			if(prev_chars[0] == '*' && c == '/'){
+				in_multi_line_comment = false;
+			}
 		} else {
 			if(c == '\"') {
 				in_string = true;
 			} else if (c == '\'') {
 				in_char = true;
+			} else if ( prev_chars[0] == '/' && c == '/') {
+				in_single_line_comment = true;
+			} else if ( prev_chars[0] == '/' && c == '*') {
+				in_multi_line_comment = true;
 			}
 		}
 
@@ -43,6 +57,8 @@ int main() {
 
 	in_string && puts("String unclosed");
 	in_char && puts("Char unclosed");
+	in_single_line_comment && puts("Single line comment unclosed");
+	in_multi_line_comment && puts("Multi line comment unclosed");
 	levels_of_brace_nesting != 0 && printf("%d unclosed braces\n", levels_of_brace_nesting);
 	levels_of_parenthesis_nesting != 0 && printf("%d unclosed parenthesis\n", levels_of_parenthesis_nesting);
 	levels_of_bracket_nesting != 0 && printf("%d unclosed bracket\n", levels_of_bracket_nesting);
