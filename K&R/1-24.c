@@ -38,30 +38,54 @@ int main() {
 			if(prev_chars[0] == '*' && c == '/'){
 				in_multi_line_comment = false;
 			}
-		} else {
-			if(c == '\"') {
-				in_string = true;
-			} else if (c == '\'') {
-				in_char = true;
-			} else if ( prev_chars[0] == '/' && c == '/') {
-				in_single_line_comment = true;
-			} else if ( prev_chars[0] == '/' && c == '*') {
-				in_multi_line_comment = true;
-			}
+		} else if(c == ')') {
+			levels_of_parenthesis_nesting--;
+		} else if(c == '}') {
+			levels_of_brace_nesting--;
+		} else if(c == ']') {
+			levels_of_bracket_nesting--;
+		} else if(c == '\"') {
+			in_string = true;
+		} else if (c == '\'') {
+			in_char = true;
+		} else if ( prev_chars[0] == '/' && c == '/') {
+			in_single_line_comment = true;
+		} else if ( prev_chars[0] == '/' && c == '*') {
+			in_multi_line_comment = true;
+		} else if (c == '(') {
+			levels_of_parenthesis_nesting++;
+		} else if (c == '{') {
+			levels_of_brace_nesting++;
+		} else if (c == '[') {
+			levels_of_bracket_nesting++;
 		}
 
 		prev_chars[1] = prev_chars[0];
 		prev_chars[0] = c;
 	}
 
-
 	in_string && puts("String unclosed");
 	in_char && puts("Char unclosed");
 	in_single_line_comment && puts("Single line comment unclosed");
 	in_multi_line_comment && puts("Multi line comment unclosed");
-	levels_of_brace_nesting != 0 && printf("%d unclosed braces\n", levels_of_brace_nesting);
-	levels_of_parenthesis_nesting != 0 && printf("%d unclosed parenthesis\n", levels_of_parenthesis_nesting);
-	levels_of_bracket_nesting != 0 && printf("%d unclosed bracket\n", levels_of_bracket_nesting);
+
+	if(levels_of_parenthesis_nesting > 0) {
+		printf("%d unclosed parenthesis\n", levels_of_parenthesis_nesting);
+	} else if (levels_of_parenthesis_nesting < 0) {
+		printf("%d extra parenthesis\n", -levels_of_parenthesis_nesting);
+	}
+
+	if(levels_of_brace_nesting > 0) {
+		printf("%d unclosed braces\n", levels_of_brace_nesting);
+	} else if (levels_of_brace_nesting < 0) {
+		printf("%d extra braces\n", -levels_of_brace_nesting);
+	}
+
+	if(levels_of_bracket_nesting > 0) {
+		printf("%d unclosed brackets\n", levels_of_bracket_nesting);
+	} else if (levels_of_bracket_nesting < 0) {
+		printf("%d extra brackets\n", -levels_of_bracket_nesting);
+	}
 }
 
 bool is_current_char_escaped(char prev_chars[]) {
