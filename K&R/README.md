@@ -5,4 +5,4 @@ Solutions to the exercises from K&R. They are compiled with the following flags 
 clang -std=c17 -Wall -Wextra -pedantic
 ```
 
-Exercise 4-5 also requires the `-lm` flag to compile.
+Exercise 4-5 and 4-6 also requires the `-lm` flag to compile.
