@@ -105,9 +105,11 @@ int getop(char s[]) {
 		} else {
 			ungetch(c); /* put back so that it is read as a operator */
 		}
-		c = getch();
+	} else {
+		ungetch(c);
 	}
 
+	c = getch();
 	if(!(c == '.' || isdigit(c))) { /* return operator */
 		s[0] = c;
 		s[1] = '\0';
