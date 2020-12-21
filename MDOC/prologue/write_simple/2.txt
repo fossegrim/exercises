@@ -1,2 +1,0 @@
->https://mandoc.bsd.lv/mdoc/exercises/prologue/write_simple.html#QUESTIONS
-When writing the ls man page for OpenBSD, the date could be inferred with $Mdocdate$ as opposed to explicitly typde out as "month day, year". $Mdocdate$ is automatically filled in by OpenBSD's cvs(1).
