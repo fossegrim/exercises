@@ -1,6 +1,2 @@
 # exercises
-Solutions to various exercises.
-| directory | resource |
-|---------- |----------|
-| [K&R](https://github.com/olav35/exercises/tree/master/K%26R) | [The C Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language) |
-| [MDOC](https://github.com/olav35/exercises/tree/master/MDOC) | [mandoc.bsd.lv/mdoc](https://mandoc.bsd.lv/mdoc/) |
+Moved to github.com/fossegrim/{[mdoc](https://github.com/fossegrim/mdoc),[knr](https://github.com/fossegrim/knr),[gopl](https://github.com/fossegrim/gopl)}.
